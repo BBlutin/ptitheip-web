@@ -1,4 +1,4 @@
-import { signIn, getSession } from 'next-auth/client'
+import { signIn, getSession } from 'next-auth/react'
 
 function SignIn() {
     return (

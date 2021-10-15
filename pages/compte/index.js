@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import {useSession, getSession} from 'next-auth/client'
+import {useSession, getSession} from 'next-auth/react'
 
 import Menu from '../../components/Menu'
 import Account from '../../components/Account'
