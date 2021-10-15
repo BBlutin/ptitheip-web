@@ -1,11 +1,12 @@
 import Head from 'next/head'
-import {useSession, getSession} from 'next-auth/react'
+import {getSession} from 'next-auth/client'
 
 import Menu from '../../components/Menu'
 import Account from '../../components/Account'
 import Footer from '../../components/Footer'
 
 export default function Compte() {
+
   return (
     <div className="flex flex-col min-h-screen bg-[#0F0F0F]">
       <Head>
@@ -21,18 +22,19 @@ export default function Compte() {
   )
 }
 
-Compte.getInitialProps = async(context) => {
-    const { req,res } = context
-    const session = await getSession({req});
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
 
-    if (!session) {
-        res.writeHead(302, {
-            Location: "../auth/signin"
-        })
-        res.end()
-        return;
-    }
+  if (!session) {
     return {
-        props: {session}
+      redirect: {
+        destination: '/auth/signin',
+        permanent: false,
+      },
     }
+  }
+
+  return {
+    props: { session }
+  }
 }

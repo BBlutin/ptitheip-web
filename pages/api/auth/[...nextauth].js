@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import { FirebaseAdapter } from "@next-auth/firebase-adapter"
 
-import firebase from "firebase/app"
+import firebase from "firebase"
 import "firebase/firestore"
 
 import FacebookProvider from 'next-auth/providers/facebook'
@@ -20,10 +20,11 @@ const firebaseConfig = {
   measurementId: "G-CBMHEFG9VD"
 }
 
-const firestore = (
-  firebase.apps[0] ?? firebase.initializeApp(firebaseConfig)
-).firestore()
+const app = !firebase.apps.length 
+            ? firebase.initializeApp(firebaseConfig) 
+            : firebase.app()
 
+const firestore = app.firestore()
 
 export default NextAuth({
   providers: [
@@ -44,13 +45,14 @@ export default NextAuth({
     //     clientSecret: process.env.TWITTER_CLIENT_SECRET
     // })
   ],
-  adapter: FirebaseAdapter(firestore),
 
   session: {
     jwt: false,
     maxAge: 60*60,
     updateAge: 30*60,
   },
+  
+  adapter: FirebaseAdapter(firestore),
 
   pages: {
     signIn: '/auth/signin'

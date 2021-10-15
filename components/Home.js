@@ -3,19 +3,19 @@
 function Home() {
 
     return (
-        <div className="flex flex-col flex-grow ml-32">
+        <div className="flex flex-col flex-grow ml-32 font-content">
             <div className="relative flex flex-col justify-start w-full h-screen">
                 <div className="absolute top-0 left-0 right-0 h-screen bg-cover blur-sm bg-home-bg"></div>
                 <div className="h-screen absolute top-0 left-0 right-0 bg-[#0F0F0F] bg-opacity-80"></div>
                 <div className="flex items-center flex-grow">
-                    <h2 className="text-gray-300 z-[2] text-5xl px-20">Le P'tit HEIP fait peau neuve !</h2>
+                    <h2 className="text-gray-300 z-[2] text-5xl px-20 font-title">Le P'tit Heip Fait Peau Neuve!</h2>
                 </div>
                 <div className="z-[2] px-20">
                     <div className="bg-[#D03738] px-6 py-4 w-1/3">
                         <h4 className="text-xl text-white">2021-2022 c'est plein de projets : </h4>
                     </div>
                     <div className="flex flex-col px-8 py-8 bg-white bg-opacity-30">
-                        <div className="flex justify-between px-20 pb-10">
+                        <div className="flex justify-between px-20 pb-12">
                             <div className="flex flex-col items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24 text-[#D03738]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
@@ -42,7 +42,7 @@ function Home() {
                             </div>
                         </div>
                         
-                        <p className="text-xl text-white">Et de nombreuses autres surprises... Restez connectés !</p>
+                        <p className="text-lg text-white">Et de nombreuses autres surprises... Restez connectés !</p>
                     </div>
                 </div>
             </div>

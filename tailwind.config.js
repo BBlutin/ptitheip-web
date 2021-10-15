@@ -8,6 +8,12 @@ module.exports = {
         'home-bg': "url('/bg-home.jpg')",
        }
     },
+    fontFamily: {
+      'title': ['"Major Mono Display"', 'monospace'],
+      'article': ['"Inknut Antiqua"', 'serif'],
+      'serif': ['"Spectral"', 'serif'],
+      'content': ['"Poppins"', 'sans-serif'],
+    },
   },
   variants: {
     extend: {},
