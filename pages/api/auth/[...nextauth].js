@@ -1,11 +1,30 @@
 import NextAuth from "next-auth"
 import { FirebaseAdapter } from "@next-auth/firebase-adapter"
-import { db } from '../../../firebase'
 
 import FacebookProvider from 'next-auth/providers/facebook'
 import GoogleProvider from 'next-auth/providers/google'
 import InstagramProvider from 'next-auth/providers/instagram'
 // import TwitterProvider from 'next-auth/providers/twitter'
+
+import firebase from 'firebase'
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAt0hGcqXsXUxgVRiM5-dPgzFBwlqEdOgM",
+    authDomain: "le-ptit-heip.firebaseapp.com",
+    projectId: "le-ptit-heip",
+    storageBucket: "le-ptit-heip.appspot.com",
+    messagingSenderId: "217029345287",
+    appId: "1:217029345287:web:0c87db9b6156f41a82eaa2",
+    measurementId: "G-CBMHEFG9VD"
+}
+
+
+const app = !firebase.apps.length
+            ? firebase.initializeApp(firebaseConfig)
+            : firebase.app()
+
+
+const db = app.firestore()
 
 export default NextAuth({
   providers: [
