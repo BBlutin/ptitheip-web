@@ -1,8 +1,14 @@
 import { signIn, getSession } from 'next-auth/client'
 import Link from 'next/link'
+import Head from 'next/head'
+
 function SignIn() {
     return (
         <div className='w-screen h-screen bg-[#0F0F0F] flex flex-col justify-center items-center'>
+            <Head>
+                <title>Connexion | Le P'tit H</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
             <Link href='/'>
                 <img src="/logo.png" className='cursor-pointer' alt="" />
             </Link>

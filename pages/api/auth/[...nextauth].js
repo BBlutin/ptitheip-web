@@ -11,13 +11,13 @@ import InstagramProvider from 'next-auth/providers/instagram'
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAt0hGcqXsXUxgVRiM5-dPgzFBwlqEdOgM",
-  authDomain: "le-ptit-heip.firebaseapp.com",
-  projectId: "le-ptit-heip",
-  storageBucket: "le-ptit-heip.appspot.com",
-  messagingSenderId: "217029345287",
-  appId: "1:217029345287:web:0c87db9b6156f41a82eaa2",
-  measurementId: "G-CBMHEFG9VD"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 }
 
 const app = !firebase.apps.length 

@@ -41,8 +41,8 @@ function Menu() {
                 </div>
             </div>
             <Link href='/compte'>
-                <div className="rounded-full border-2 border-[#404042] p-2 mb-8 cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#404042]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="rounded-full border-2 border-[#404042] p-2 mb-8 cursor-pointer hover:border-[#D03738] group transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#404042] group-hover:text-[#D03738] transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                 </div>

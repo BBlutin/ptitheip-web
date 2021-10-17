@@ -12,10 +12,12 @@ function Account() {
 
     const email = session?.user.email
 
-    const [ user_perm ] = useDocumentOnce(db
+    const [ user_perm, loading_perm ] = useDocumentOnce(db
         .collection('roles')
         .doc(email)
     )
+
+    if (loading_perm) return null
 
     return (
         <div className="flex flex-col px-10 py-10 ml-32 font-content h-[calc(100vh-96px)]">

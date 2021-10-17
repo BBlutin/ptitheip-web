@@ -10,8 +10,6 @@ import {useSession} from 'next-auth/client'
 function ArticleRow({id, title, type, img, timestamp, desc}) {
 
     const [ session, loading ] = useSession()
-    
-    if (typeof window !== 'undefined' && loading) return null
 
     const email = session?.user.email
 
@@ -43,24 +41,7 @@ function ArticleRow({id, title, type, img, timestamp, desc}) {
         
     }, [likes])
 
-    const handleLike = () => {
-        if (email) {
-            if (userLike == "none") {
-                db.collection('likes').doc(id).set({[email]: true},{merge: true})
-                setLikeCount(likeCount + 1)
-                setUserLike("#D03738")
-            }
-            else {
-                db.collection('likes').doc(id).set({[email]: firebase.firestore.FieldValue.delete()},{merge: true})
-                setLikeCount(likeCount - 1)
-                setUserLike("none")
-            }
-        }
-        else {
-            alert('Vous devez être connecté')
-        }
-    }
-
+    
     return (
         <Link href={articlePath}>
             <div className="flex border-2 border-[#404042] p-3 rounded-lg hover:border-[#D03738] transition-all duration-300 cursor-pointer">
@@ -78,7 +59,7 @@ function ArticleRow({id, title, type, img, timestamp, desc}) {
                     <div className='flex items-center justify-between'>
                         <h4 className="text-xs text-gray-400">Publié le {date}</h4>
                         <div className='flex items-center'>
-                            <button onClick={handleLike} className='z-10 flex items-center justify-center mr-1'>
+                            <button className='z-10 flex items-center justify-center mr-1'>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-[#D03738]" fill={userLike} viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                 </svg>
