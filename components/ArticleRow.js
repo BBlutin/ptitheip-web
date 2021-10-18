@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 import {useSession} from 'next-auth/client'
 
-function ArticleRow({id, title, type, img, timestamp, desc}) {
+function ArticleRow({id, title, type, img, timestamp, desc, author, read}) {
 
     const [ session, loading ] = useSession()
 
@@ -44,20 +44,23 @@ function ArticleRow({id, title, type, img, timestamp, desc}) {
     
     return (
         <Link href={articlePath}>
-            <div className="flex border-2 border-[#404042] p-3 rounded-lg hover:border-[#D03738] transition-all duration-300 cursor-pointer">
-                <div className="h-64 mr-6 bg-center bg-cover rounded-md w-80" style={img_url}>
+            <div className="flex flex-col transition-all duration-300 rounded-lg cursor-pointer ring-2 ring-[#2e2e2e] shadow-lg hover:shadow-card">
+                <div className="w-full h-[25vh] bg-center bg-cover rounded-t-md" style={img_url}>
                 </div>
-                <div className="flex flex-col justify-between flex-grow h-full">
-                    <div className="flex items-center self-end">
+                <div className="flex flex-col justify-between flex-grow px-5 py-5">
+                    <div className="flex items-center">
                         <div className="bg-[#D03738] w-2 h-2 rounded-full mr-1"></div>
                         <h3 className="text-xs text-gray-300">{type}</h3>
                     </div>
-                    <div className='flex flex-col'>
-                        <h1 className='pb-4 font-bold text-white font-title'>{title}</h1>
+                    <div className='flex flex-col pb-16'>
+                        <h1 className='py-4 font-bold text-white font-title'>{title}</h1>
                         <p className='font-serif text-gray-200'>{desc}</p>
                     </div>
-                    <div className='flex items-center justify-between'>
-                        <h4 className="text-xs text-gray-400">Publié le {date}</h4>
+                    <div className='flex items-center justify-between '>
+                        <div className='flex flex-col space-y-2'>
+                            <h4 className="text-xs text-gray-400">Par {author}</h4>
+                            <h4 className="text-xs text-gray-400">{date} - {read} min de lecture</h4>
+                        </div>
                         <div className='flex items-center'>
                             <button className='z-10 flex items-center justify-center mr-1'>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-[#D03738]" fill={userLike} viewBox="0 0 24 24" stroke="currentColor">

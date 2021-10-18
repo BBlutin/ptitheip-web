@@ -14,7 +14,7 @@ function ArticlesList() {
             <div>
                 <h2 className="text-5xl text-gray-300 font-title">Nos Articles</h2>
             </div>
-            <div className='grid grid-cols-2 mt-10'>
+            <div className='grid grid-cols-3 gap-4 mt-16 ml-10 mr-10'>
                 {snapshot?.docs.map(article => (
                     article.data().event != true ?
                         <ArticleRow 
@@ -24,6 +24,8 @@ function ArticlesList() {
                             desc = {article.data().desc}
                             type = {article.data().type}
                             img = {article.data().img}
+                            author = {article.data().author}
+                            read = {article.data().read}
                             timestamp = {article.data().timestamp}
                         />
                         : none

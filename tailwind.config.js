@@ -6,7 +6,10 @@ module.exports = {
     extend: {
       backgroundImage: {
         'home-bg': "url('/bg-home.jpg')",
-       }
+      },
+      boxShadow: {
+        'card': '5px 8px 15px 5px rgba(60, 60, 60, 0.1)',
+      }
     },
     fontFamily: {
       'title': ['"Major Mono Display"', 'monospace'],

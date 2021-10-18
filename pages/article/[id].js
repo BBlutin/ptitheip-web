@@ -41,6 +41,7 @@ function Article() {
                     type = {article?.data()?.type}
                     img = {article?.data()?.img}
                     author = {article?.data()?.author}
+                    read = {article?.data()?.read}
                     timestamp = {article?.data()?.timestamp}
                 />
             ) : (
