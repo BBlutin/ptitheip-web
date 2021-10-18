@@ -7,13 +7,11 @@ import Link from 'next/link'
 
 import {useSession} from 'next-auth/client'
 
-function ArticleRow({id, title, type, img, timestamp, desc, author, read}) {
+function AdminArticleRow({id, title, type, img, timestamp, desc, author, read}) {
 
     const [ session, loading ] = useSession()
 
-    const email = session?.user.email
-
-    const articlePath = "/article/" + id
+    const articlePath = "/admin/article/" + id
 
     const date = timestamp.toDate().toLocaleDateString()
     const img_url = {
@@ -24,7 +22,6 @@ function ArticleRow({id, title, type, img, timestamp, desc, author, read}) {
 
     let like_array = []
     const [likeCount, setLikeCount] = useState(0)
-    const [userLike, setUserLike] = useState("none")
 
     useEffect(() => {
 
@@ -33,9 +30,6 @@ function ArticleRow({id, title, type, img, timestamp, desc, author, read}) {
             if (likes.data()) {
                 Object.entries(likes.data()).forEach(like => {
                     like_array.push(like[0])
-                    if (email == like[0]) {
-                        setUserLike("#D03738")
-                    }
                 });
                 setLikeCount(like_array.length)
             }
@@ -43,6 +37,7 @@ function ArticleRow({id, title, type, img, timestamp, desc, author, read}) {
         
     }, [likes])
 
+    console.log(type)
     
     return (
         <Link href={articlePath}>
@@ -51,21 +46,19 @@ function ArticleRow({id, title, type, img, timestamp, desc, author, read}) {
                 </div>
                 <div className="flex flex-col justify-between flex-grow px-5 py-5">
                     <div className="flex items-center">
-                        <div className="bg-[#D03738] w-2 h-2 rounded-full mr-1"></div>
-                        <h3 className="text-xs text-gray-300">{type}</h3>
+                        <div className="text-[0.7rem] text-gray-100 border px-3 py-2 border-[#3b3b3b] rounded-xl bg-[#3b3b3b] bg-opacity-60">{type == "" ? "Aucune catégorie" : type}</div>
                     </div>
-                    <div className='flex flex-col pb-16'>
+                    <div className='flex flex-col pb-8'>
                         <h1 className='py-4 font-bold text-white font-title'>{title}</h1>
                         <p className='font-serif text-gray-200'>{desc}</p>
                     </div>
                     <div className='flex items-center justify-between '>
-                        <div className='flex flex-col space-y-2'>
-                            <h4 className="text-xs text-gray-400">Par {author}</h4>
-                            <h4 className="text-xs text-gray-400">{date} - {read} min de lecture</h4>
+                        <div className='flex flex-col'>
+                            <h4 className="text-xs text-gray-400">Par {author} - {date}</h4>
                         </div>
                         <div className='flex items-center'>
                             <button className='z-10 flex items-center justify-center mr-1'>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-[#D03738]" fill={userLike} viewBox="0 0 24 24" stroke="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-[#D03738]" fill="#D03738" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                 </svg>
                             </button>
@@ -78,4 +71,4 @@ function ArticleRow({id, title, type, img, timestamp, desc, author, read}) {
     )
 }
 
-export default ArticleRow
+export default AdminArticleRow

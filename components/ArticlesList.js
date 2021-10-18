@@ -16,19 +16,18 @@ function ArticlesList() {
             </div>
             <div className='grid grid-cols-3 gap-4 mt-16 ml-10 mr-10'>
                 {snapshot?.docs.map(article => (
-                    article.data().event != true ?
-                        <ArticleRow 
-                            key = {article.id}
-                            id = {article.id}
-                            title = {article.data().title}
-                            desc = {article.data().desc}
-                            type = {article.data().type}
-                            img = {article.data().img}
-                            author = {article.data().author}
-                            read = {article.data().read}
-                            timestamp = {article.data().timestamp}
-                        />
-                        : none
+                    (article.data().event == false && article.data().published == true) &&
+                    <ArticleRow 
+                        key = {article.id}
+                        id = {article.id}
+                        title = {article.data().title}
+                        desc = {article.data().desc}
+                        type = {article.data().type}
+                        img = {article.data().img}
+                        author = {article.data().author}
+                        read = {article.data().read}
+                        timestamp = {article.data().timestamp}
+                    />
                 ))}
             </div>
         </div>

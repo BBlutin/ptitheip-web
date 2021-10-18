@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import { useSession, getSession } from 'next-auth/client'
 import { useRouter } from "next/router"
-import { db } from '../../firebase'
+import { db } from '../../../firebase'
 import { useDocumentOnce } from 'react-firebase-hooks/firestore'
 
-import Menu from '../../components/Menu'
-import Footer from '../../components/Footer'
-import AdminDash from '../../components/AdminDash'
+import Menu from '../../../components/Menu'
+import Footer from '../../../components/Footer'
+import AdminArticleDash from '../../../components/AdminArticleDash'
 
 export default function Admin() {
 
@@ -39,12 +39,12 @@ export default function Admin() {
   return (
     <div className="flex flex-col min-h-screen bg-[#0F0F0F]">
       <Head>
-        <title>Admin | Le P'tit H</title>
+        <title>Admin - Articles | Le P'tit H</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
 
       <Menu />
-      <AdminDash />
+      <AdminArticleDash />
       <Footer />
 
     </div>
