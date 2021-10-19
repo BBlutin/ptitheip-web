@@ -9,6 +9,15 @@ module.exports = {
       },
       boxShadow: {
         'card': '5px 8px 15px 5px rgba(60, 60, 60, 0.1)',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': {  transform: 'translate(0,-10px)' },
+          '50%': { transform: 'translate(0,10px)' },
+        }
+      },
+      animation: {
+        float: 'float 3s ease-in-out infinite',
       }
     },
     fontFamily: {

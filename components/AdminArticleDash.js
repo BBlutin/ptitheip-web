@@ -4,8 +4,9 @@ import Router from 'next/router'
 import { db } from "../firebase"
 import firebase from "firebase"
 import { useSession } from 'next-auth/client'
-import { useCollectionOnce } from 'react-firebase-hooks/firestore'
+import { useCollection } from 'react-firebase-hooks/firestore'
 import AdminArticleRow from "./AdminArticleRow"
+import { toast } from 'react-toastify';
 
 function AdminArticleDash() {
 
@@ -15,7 +16,7 @@ function AdminArticleDash() {
 
     const author = session?.user.name
 
-    const [snapshot] = useCollectionOnce(db
+    const [snapshot] = useCollection(db
         .collection('articles')
         .orderBy('timestamp', 'desc')
     )
@@ -25,11 +26,16 @@ function AdminArticleDash() {
             author: author,
             title: "Nouvel article",
             type: "",
+            desc: "",
+            event: false,
+            published: false,
+            premium: false,
+            read: "",
             img: "https://media.discordapp.net/attachments/898600853517250602/899758661612744724/HEIP-campus-Paris.png",
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         })
-        .then((docRef) => {
-            Router.reload(window.location.pathname)
+        .then(() => {
+            toast.success("Article créé avec succès !")
         })
         .catch((error) => {
             alert("Une erreur est survenue durant la création de l'article")
@@ -60,7 +66,7 @@ function AdminArticleDash() {
             <div className="px-10 pt-10">
                 <h2 className="text-5xl tracking-wide text-gray-300">Liste des articles</h2>
             </div>
-            <div className='grid grid-cols-3 gap-8 my-16 ml-10 mr-10 gap-y-12'>
+            <div className='grid grid-cols-3 gap-12 my-16 ml-10 mr-10 gap-y-16'>
                 {snapshot?.docs.map(article => (
                     <AdminArticleRow 
                         key = {article.id}
