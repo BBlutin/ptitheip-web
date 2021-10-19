@@ -5,7 +5,6 @@ import Footer from '../components/Footer'
 
 import { useSession } from 'next-auth/client'
 import { toast } from 'react-toastify';
-import { useEffect } from 'react'
 
 export default function Home() {
 
